@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name Photography</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #000;
+            --accent-color: #d4af37;
+            --bg-color: #f8f8f8;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 1000;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        @media(max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                align-items: flex-start;
+                width: 200px;
+                padding: 1rem;
+                display: none;
+            }
+            nav.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 90vh;
+            background: url('hero-image.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        h2.section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        h2.section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+
+        /* PORTFOLIO */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .portfolio img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
+        }
+        .portfolio img:hover {
+            transform: scale(1.05);
+        }
+
+        /* SERVICES */
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin-top: 1rem;
+        }
+        input, textarea {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: var(--accent-color);
+            color: black;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        /* FADE-IN ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Name</h1>
+        <span class="menu-toggle">&#9776;</span>
+        <nav>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#sessions">Sessions</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Capturing Moments, Creating Memories</h2>
+            <p>Photography by Your Name</p>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="fade-in">
+        <h2 class="section-title">Portfolio</h2>
+        <p>My favorite shots from portraits, events, and creative projects.</p>
+        <div class="portfolio">
+            <img src="photo1.jpg" alt="Sample 1">
+            <img src="photo2.jpg" alt="Sample 2">
+            <img src="photo3.jpg" alt="Sample 3">
+            <img src="photo4.jpg" alt="Sample 4">
+            <img src="photo5.jpg" alt="Sample 5">
+            <img src="photo6.jpg" alt="Sample 6">
+        </div>
+    </section>
+
+    <!-- SESSIONS -->
+    <section id="sessions" class="fade-in">
+        <h2 class="section-title">Photo Sessions</h2>
+        <div class="service-card">
+            <h3>Portrait Sessions</h3>
+            <p>Perfect for individuals, couples, or families. Includes editing and 10 final images.</p>
+            <p><strong>Price:</strong> $250</p>
+        </div>
+        <div class="service-card">
+            <h3>Event Coverage</h3>
+            <p>Full coverage for events, celebrations, or corporate gatherings. Includes all edited images.</p>
+            <p><strong>Price:</strong> Starting at $500</p>
+        </div>
+        <div class="service-card">
+            <h3>Creative Shoots</h3>
+            <p>Custom concepts, themed shoots, and artistic projects. Let's create something unique.</p>
+            <p><strong>Price:</strong> Custom Quote</p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Get in Touch</h2>
+        <p>Hi, I’m [Your Name], a passionate photographer based in [Your Location]. I capture moments that last forever.</p>
+        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+        <p>Phone: (123) 456-7890</p>
+        <form class="contact-form" action="mailto:your@email.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2025 Your Name Photography | All Rights Reserved
+    </footer>
+
+    <!-- SCRIPT FOR MOBILE MENU & FADE-IN -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
